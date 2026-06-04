@@ -8,15 +8,20 @@
     <LangVersion>14.0</LangVersion>
     <Platforms>AnyCPU</Platforms>
     <Prefer32Bit>false</Prefer32Bit>
+    <PublishDir Condition="Exists('C:\Program Files\Fiddler\Fiddler.exe')">C:\Program Files\Fiddler\Inspectors\</PublishDir>
+    <PublishDir Condition="!Exists('C:\Program Files\Fiddler\Fiddler.exe')">$(LocalAppData)\Programs\Fiddler\Inspectors\</PublishDir>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="Fiddler">
-      <HintPath>C:\Program Files\Fiddler\Fiddler.exe</HintPath>
+      <HintPath Condition="Exists('C:\Program Files\Fiddler\Fiddler.exe')">C:\Program Files\Fiddler\Fiddler.exe</HintPath>
+      <HintPath Condition="!Exists('C:\Program Files\Fiddler\Fiddler.exe')">$(LocalAppData)\Programs\Fiddler\Fiddler.exe</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Standard">
-      <HintPath>C:\Program Files\Fiddler\Inspectors\Standard.dll</HintPath>
+    <HintPath Condition="Exists('C:\Program Files\Fiddler\Fiddler.exe')">C:\Program Files\Fiddler\Inspectors\Standard.dll</HintPath>
+    <HintPath Condition="!Exists('C:\Program Files\Fiddler\Fiddler.exe')">$(LocalAppData)\Programs\Fiddler\Inspectors\Standard.dll</HintPath>
 		<Private>False</Private>
     </Reference>
   </ItemGroup>
